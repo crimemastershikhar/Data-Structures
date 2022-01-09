@@ -24,6 +24,7 @@ int main()
   {
     for(int j = 0; j < 10; j++)
     {
+      cout<<"Printing the updated Array lists"<<endl;
       cout<<a[i][j]<<"  ";
     }
     cout<<endl;
