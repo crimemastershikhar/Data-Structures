@@ -17,6 +17,7 @@ int main()
   }
       for(int i = 0 ;i < 15 ;i++)
       {
+      cout<<"Printing the array below"<<endl;
         cout<<a[i]<<" ";
       }
 }
