@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+template<class T>
+class Stack{
+  private:
+  T stack[100];
+  int top1;
+  int top2;
+  public:
+  Stack()
+  {
+    top1 = -1;
+    top2 = 100;
+  }
+  void push1 (T data){
+    if(top1 == 99 || top1 >= top2)
+    {
+      cout<<"Stack is overflown"<<endl;
+      return;
+    }
+    stack[++top1] = data;
+  }
+  void push2 (T data)
+  {
+    if(top2 == 0 || top1 >= top2)
+    {
+      cout<<"Stack is overflown"<<endl;
+      return;
+    }
+    stack[--top2] = data;
+  }
+  T pop1(){
+    if(isEmpty1())
+    {
+      cout<<"Stack is empty"<<endl;
+      return -1;
+    }
+    return stack[top1--];
+  }
+  T pop2(){
+    if(isEmpty2())
+    {
+      cout<<"Stack is empty"<<endl;
+      return -1;
+    }
+    return stack[top2++];
+  }  
+  T peek1(){
+    if(isEmpty1())
+    {
+      cout<<"Stack empty"<<endl;
+      return -1;
+    }
+    return stack[top1];
+  }
+  T peek2(){
+    if(isEmpty2())
+    {
+      cout<<"Stack empty"<<endl;
+      return -1;
+    }
+    return stack[top2];
+  }  
+  void print1()
+  { 
+    cout << "-----Stack 1-----" <<endl;
+    for(int i = top1; i >= 0; i--)
+    {
+      cout << stack[i] <<endl;
+    }
+    cout << "------End------" << endl;
+  }
+  void print2()
+  { 
+    cout << "-----Stack 2-----" <<endl;
+    for(int i = top2; i < 100; i++)
+    {
+      cout << stack[i] <<endl;
+    }
+    cout << "------End------" <<endl;
+  }
+  bool isEmpty1()
+  {
+    return (top1 == -1);
+  }
+  bool isEmpty2()
+  {
+    return (top2 == 100);
+  }  
+};
+int main(){
+  Stack<int> *stack = new Stack<int>();
+  stack->push1(12);
+  stack->push1(86);
+  stack->print1();
+  if(stack->isEmpty1())
+    cout << "Stack 1 is empty."<<endl;
+  else
+    cout << "Stack 1 is not empty."<<endl;
+    cout << "Pop1: " << stack->pop1()<<endl;
+    cout << "Peek1: " << stack->peek1() << std::endl << std::endl;cout<<"Updated Stack is: "<<endl;
+    stack->print1();
+    cout<<endl;
+  stack->push2(01);
+  stack->push2(13);
+  stack->print2();
+  if(stack->isEmpty2())
+  cout << "Stack 2 is empty. "<<endl;
+  else
+    cout << "Stack 2 is not empty."<<endl;
+  cout << "Pop2: " << stack->pop2()<<endl;
+  cout << "Peek2: " << stack->peek2() << std::endl << std::endl;
+  cout<<"Updated Stack is: "<<endl;
+  stack->print2();
+  cout<<endl;    
+	return 0;
+}
