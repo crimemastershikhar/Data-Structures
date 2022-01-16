@@ -1,0 +1,124 @@
+#include <iostream>
+using namespace std;
+
+template<class T>
+class Deque{
+  private:
+  int front;
+  int rear;
+  T queue[100];
+  public:
+  Deque()
+  {
+    front = rear = 0;
+  }
+  void insertFront( T data)
+  {
+    if( rear == 100)
+    {
+      cout<<"No space available in existinf Queue"<<endl;
+      return;
+    }
+    for(int i = rear-1;i>=0;i--)
+    {
+      queue[i+1] = queue[i];
+    }
+    rear++;
+    queue[front] = data;
+  }
+  void insertRear(T data)
+  {
+    if( rear == 100)
+    {
+      cout<<"No space available in existinf Queue"<<endl;
+      return;
+    }
+    queue[rear++] = data;                
+  }
+  T deleteFront()
+  {
+    if(rear == front)
+    {
+      cout<<"Resulting empty Queue"<<endl;
+      return -1;
+    }
+    int temp = queue[front];
+    for(int i=0;i<rear-1;i++)
+    {
+      queue[i] = queue[i+1];
+    }
+    rear--;
+    return temp;
+  }
+  T deleteRear()
+  {
+    if(front == rear) return -1;
+    return queue[rear--];
+  }
+
+
+  T queueFront()
+  {
+    if(rear == front)
+    {
+      cout << "\nQueue is empty\n";
+      return -1;
+    } 
+    return queue[front];
+  }
+
+
+  T queueRear()
+  {
+    if(rear == front)
+    {
+      cout << "\nQueue is empty\n";
+      return -1;
+    } 
+    return queue[rear-1];
+  }
+
+
+  int size()
+  {
+    return rear;
+  }
+  bool isEmpty()
+  {
+    return (front == rear);
+  }
+
+  void print()
+  { 
+    for(int i=0; i < rear; i++)
+    {
+      cout << queue[i] << std::endl;
+    }
+  }
+};
+
+int main() {
+
+  Deque<int> queue;
+  cout << "Insert Rear\n";
+  queue.insertRear(1);
+  queue.insertRear(2);
+  queue.print();
+  if(queue.isEmpty())
+    cout << "Queue is empty.\n";
+  else
+  cout << "Queue is not empty.\n";
+  cout << "Front: " << queue.queueFront();
+  cout << "\nRear: " << queue.queueRear() << std::endl << std::endl;
+  cout << "\nInsert Front\n";
+  queue.insertFront(3);
+  queue.insertFront(4);
+  queue.print();
+  cout << "Front: " << queue.queueFront();
+  cout << "\nRear: " << queue.queueRear() << std::endl << std::endl;
+  cout << "\nDelete Front: " << queue.deleteFront();
+  cout << "\nDelete Rear: " << queue.deleteRear() << std::endl ;
+  queue.print();
+  cout << "Front: " << queue.queueFront();
+  cout << "\nRear: " << queue.queueRear() << std::endl << std::endl;  
+}
