@@ -1,0 +1,69 @@
+#include <iostream>
+#include<list>
+using namespace std;
+
+template<class T>
+class Queue{
+  private:
+  list<T> list;
+  public:
+  void push(T data)
+  {
+    list.push_back(data);
+  }
+  T pop()
+  {
+    if(isEmpty())
+    {
+      cout<<"Queue is empty"<<endl;
+      return -1;
+    }
+    T data = *list.begin();
+    list.pop_front();
+    return data;
+  }
+  T front()
+  {
+    if(isEmpty())
+    {
+      cout<<"Queue is empty"<<endl;
+      return -1;
+    }
+    return *list.begin();    
+  }
+  int size()
+  {
+    return list.size();
+  }
+  bool isEmpty()
+  {
+    return list.empty();
+  }
+  void print()
+  {
+    cout<<"The existing list is "<<endl;
+    for(auto it = list.begin(); it !=list.end(); it++)
+    {
+      cout<<*it<<endl;
+    }
+  }
+};
+int main() {
+  Queue<int> queue;
+  queue.push(1);
+  queue.push(2);
+  queue.push(3);
+  queue.push(4);
+  queue.print();
+
+  if(queue.isEmpty())
+  {
+    cout<<"Empty Queue"<<endl;
+  }
+  cout<<"Front element is "<<queue.front()<<endl;
+  cout<<"Size of the Queue is "<<queue.size()<<endl;
+  cout<<"Popping the element using FIFO "<<queue.pop()<<endl;
+  queue.print();
+  cout<<endl;
+  cout<<"The new size is "<<queue.size()<<endl;
+} 
