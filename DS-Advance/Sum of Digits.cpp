@@ -5,9 +5,7 @@ int sum(int n){
  if(n/10 == 0){
     return n;
   }
-  int roundOff = n % 10;
-  int div = n/10;
-  return (roundOff + sum(div));
+  return (n%10 + sum(n/10));
 }
 int main() {
   int n;
