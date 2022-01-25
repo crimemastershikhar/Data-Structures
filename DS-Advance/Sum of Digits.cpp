@@ -2,7 +2,7 @@
 using namespace std;
 
 int sum(int n){
-  if(n == 0 || n ==1){
+ if(n/10 == 0){
     return n;
   }
   int roundOff = n % 10;
